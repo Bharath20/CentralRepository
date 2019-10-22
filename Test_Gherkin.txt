@@ -1,0 +1,42 @@
+Feature: Child
+	In order to avoid silly mistakes
+	As a math idiot
+	I want to be told the sum of two numbers
+
+
+ Scenario Outline: Creating a child
+
+   Given user is on "<website>/<serviceManager>" page
+	When user chills for "{{defaultExplicitWait}}" seconds
+	And user clicks "Log In"
+	And user maximizes window
+	Then page contains text "Please log in."
+	When user enters value "<userName>" into "Email"
+	And user enters value "<password>" into "Password"
+	And user clicks "Log in"
+	Then page contains text "When you finish reading the agreement"
+	When user clicks "I Agree"
+  Then page contains text "Parent/Guardian Information"
+   When user clicks "Add Child"
+   Then page contains text "About Your Child"
+   When user enters value "<firstname>" into "First Name"
+   And user enters value "<lastname>" into "Last Name"
+   And user clears and enters value "<dob>" into "Date of Birth"
+   And user selects index "1" from "Primary Language"
+   And user selects index "1" from "Your relationship to child:"
+   And user clicks "Next Step"
+   Then page contains text "Is your child being referred to care by an agency?"
+   When user selects checkbox "Yes, my child is being referred."
+   Then page contains text "Is your child being referred to care by an agency?"
+   When user clicks "Other"
+   And user clicks "Next Step"
+   Then user chills for "5" seconds
+   When user clicks "Next Step"
+   Then page contains text "I can pay for my daycare costs (Full Fee)"
+   When user selects checkbox "I can pay for my daycare costs (Full Fee)"
+   And user clicks "Next Step"
+   Then page contains text "Review Your Child's Information"
+   When user clicks "Save & Continue to Apply to Programs"
+   Examples: 
+  | website                            | serviceManager | userName             | password | firstname | lastname | dob        |
+  | https://demo.onehsn.com/childcare/ | Ottawa         | nitripamle@enayu.com | Complex1 | Roger     | Days     | 10/25/2019 |
